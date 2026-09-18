@@ -1,0 +1,16 @@
+services:
+  my-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "8000:80"
+
+  my-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    environment:
+      SERVER_HOST: my-server
+    depends_on:
+      - my-server
